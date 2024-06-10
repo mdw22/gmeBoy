@@ -1,4 +1,4 @@
-#include <cstdint>
+#include <lib/registers.h>
 
 class Registers {
     public :
@@ -35,6 +35,24 @@ class Registers {
         void set_hl(u_int16_t value) {
             h = (static_cast<uint8_t>(value & 0xFF00) >> 8);
             l = (static_cast<uint8_t>(value & 0xFF));
+        }
+
+        // Convert FlagsRegister to uint8_t
+        uint8_t flagsRegisterToByte(const FlagsRegister& flag) {
+            return (flag.zero ? 1 : 0) << ZERO_FLAG_BYTE_POSITION |
+                    (flag.subtract ? 1 : 0) << SUBTRACT_FLAG_BYTE_POSITION |
+                    (flag.half_carry ? 1 : 0) << HALF_CARRY_FLAG_BYTE_POSITION | 
+                    (flag.carry ? 1 : 0) << CARRY_FLAG_BYTE_POSITION;
+        }
+
+        // Convert uint8_t to FlagsRegister
+        FlagsRegister byteToFlagsRegister(uint8_t byte) {
+            FlagsRegister flag;
+            flag.zero = ((byte >> ZERO_FLAG_BYTE_POSITION) & 0b1) != 0;
+            flag.subtract = ((byte >> SUBTRACT_FLAG_BYTE_POSITION) & 0b1) != 0;
+            flag.half_carry = ((byte >> HALF_CARRY_FLAG_BYTE_POSITION) & 0b1) != 0;
+            flag.carry = ((byte >> CARRY_FLAG_BYTE_POSITION) & 0b1) != 0;
+            return flag; 
         }
 
     private :

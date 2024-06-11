@@ -13,7 +13,7 @@ enum ArithmeticTarget {
 
 struct Instruction {
     InstructionType type;
-    std::variant<ArithmeticTarget> target;
+    ArithmeticTarget target;
 
     Instruction(InstructionType t) : type(t) {}
 

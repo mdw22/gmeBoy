@@ -1,19 +1,27 @@
-#include <lib/instructions.cpp>
-#include <lib/registers.cpp>
+#include <lib/cpu.h>
 
-class cpu
-{
-private:
-    /* data */
-public:
-    cpu(/* args */);
-    ~cpu();
-};
-
-cpu::cpu(/* args */)
-{
+CPU::CPU() { 
 }
 
-cpu::~cpu()
-{
+void CPU::execute(Instruction& instruction) {
+    InstructionType type = instruction.type; 
+    ArithmeticTarget target = instruction.target;
+    switch (target)
+    {
+    case ArithmeticTarget::A :
+        break;
+    case ArithmeticTarget::B :
+        break;
+    case ArithmeticTarget::C :
+        break;
+    case ArithmeticTarget::D :
+        break;
+    case ArithmeticTarget::E :
+        break;
+    case ArithmeticTarget::H :
+        break;
+    // Default register is L
+    default:
+        break;
+    }
 }

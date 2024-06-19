@@ -1,4 +1,5 @@
-#include <lib/registers.h>
+// Copyright 2024 Michael White
+#include <include/registers.h>
 
 uint16_t Register::get_bc() const {
     return static_cast<uint16_t>(b) << 8 | static_cast<uint16_t>(c);
@@ -36,7 +37,7 @@ void Register::set_hl(u_int16_t value) {
 }
 
 // Convert FlagsRegister to uint8_t
-uint8_t Register::flagsRegisterToByte(FlagsRegister& flag) {
+uint8_t Register::flagsRegisterToByte(const FlagsRegister& flag) {
     return (flag.zero ? 1 : 0) << ZERO_FLAG_BYTE_POSITION |
             (flag.subtract ? 1 : 0) << SUBTRACT_FLAG_BYTE_POSITION |
             (flag.half_carry ? 1 : 0) << HALF_CARRY_FLAG_BYTE_POSITION | 

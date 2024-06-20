@@ -1,9 +1,10 @@
 #include <iostream>
-#include <include/cpu.h>
+#include "cpu.h"
 
 int main(int argc, char *argv[])
 {
     std::cout << "Hello world!" << std::endl;
+    Instruction instruction = Instruction(ADD, A);
     CPU cpu;
-    cpu.add(7);
+    cpu.execute(instruction);
 }

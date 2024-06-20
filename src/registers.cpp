@@ -1,12 +1,12 @@
 // Copyright 2024 Michael White
-#include <include/registers.h>
+#include "registers.h"
 
 uint16_t Register::get_bc() const {
     return static_cast<uint16_t>(b) << 8 | static_cast<uint16_t>(c);
 }
 
 uint16_t Register::get_af() const {
-    return static_cast<uint16_t>(a) << 8 | static_cast<uint16_t>(f);
+    return static_cast<uint16_t>(a) << 8 | flagsRegisterToByte(f);
 }
 
 uint16_t Register::get_de() const {
@@ -23,7 +23,7 @@ void Register::set_bc(u_int16_t value) {
 
 void Register::set_af(u_int16_t value) {
     a = (static_cast<uint8_t>(value & 0xFF00) >> 8);
-    f = (static_cast<uint8_t>(value & 0xFF));
+    f = byteToFlagsRegister((static_cast<uint8_t>(value & 0xFF)));
 }
 
 void Register::set_de(u_int16_t value) {
@@ -37,7 +37,7 @@ void Register::set_hl(u_int16_t value) {
 }
 
 // Convert FlagsRegister to uint8_t
-uint8_t Register::flagsRegisterToByte(const FlagsRegister& flag) {
+uint8_t flagsRegisterToByte(const FlagsRegister& flag) {
     return (flag.zero ? 1 : 0) << ZERO_FLAG_BYTE_POSITION |
             (flag.subtract ? 1 : 0) << SUBTRACT_FLAG_BYTE_POSITION |
             (flag.half_carry ? 1 : 0) << HALF_CARRY_FLAG_BYTE_POSITION | 
@@ -45,7 +45,7 @@ uint8_t Register::flagsRegisterToByte(const FlagsRegister& flag) {
 }
 
 // Convert uint8_t to FlagsRegister
-Register::FlagsRegister Register::byteToFlagsRegister(uint8_t byte) {
+FlagsRegister byteToFlagsRegister(uint8_t byte) {
     FlagsRegister flag;
     flag.zero = ((byte >> ZERO_FLAG_BYTE_POSITION) & 0b1) != 0;
     flag.subtract = ((byte >> SUBTRACT_FLAG_BYTE_POSITION) & 0b1) != 0;

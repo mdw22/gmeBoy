@@ -32,8 +32,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/michaelwhite/Desktop/Coding Projects/gmeBoy",
-      "program": "/Users/michaelwhite/Desktop/Coding Projects/gmeBoy/build/Debug/outDebug"
+      "cwd": "/Users/michaelwhite/Desktop/Coding Projects/gmeBoy/src",
+      "program": "/Users/michaelwhite/Desktop/Coding Projects/gmeBoy/src/build/Debug/outDebug"
     }
   ]
 }

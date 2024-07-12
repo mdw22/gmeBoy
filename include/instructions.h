@@ -2,8 +2,6 @@
 #ifndef _GMEBOY_INCLUDE_INSTRUCTIONS_H_
 #define _GMEBOY_INCLUDE_INSTRUCTIONS_H_
 
-#include <variant>
-
 enum InstructionType {
     ADD, ADDHL, ADC, SUB, SBC, AND, OR, XOR, CP, INC, DEC, CCF, SCF, RRA, RLA, RRCA, RRLA,
     CPL, BIT, RESET, SET, SRL, RR, RL, RRC, RLC, SRA, SLA, SWAP

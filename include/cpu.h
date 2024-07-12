@@ -89,24 +89,9 @@ class CPU {
     
  private:
     Register REGISTERS;
-    // Function helper for add instruction
-    // @param target ArithmeticTarget target Register
+    // Function helper for instruction set
+    // @param target ArithmeticTarget target Register, Pointer to CPU function with input uint8_t and output uint8_t
     // @return void
-    void executeAdd(ArithmeticTarget target);
-
-    // Function helper for addhl instruction
-    // @param target ArithmeticTarget target Register
-    // @return void
-    void executeAddHL(ArithmeticTarget target);
-
-    // Function helper for adc instruction
-    // @param target ArithmeticTarget target Register
-    // @return void
-    void executeAddWithCarry(ArithmeticTarget target);
-
-    // Function helper for sub instruction
-    // @param target ArithmeticTarget target Register
-    // @return void
-    void executeSub(ArithmeticTarget target);
+    void executeFunc(ArithmeticTarget target, uint8_t (CPU::*func)(uint8_t));
 };
 #endif  // _GMEBOY_INCLUDE_CPU_H_
